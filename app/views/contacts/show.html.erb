@@ -1,0 +1,57 @@
+<div class="container my-4">
+
+  <%= link_to 'Edit', edit_contact_path(@contact), class: "btn btn-secondary mb-3" %>
+  <%= link_to 'Delete', @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mb-3" %>
+
+<p>
+  <strong>First name:</strong>
+  <%= @contact.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @contact.last_name %>
+</p>
+
+<p>
+  <strong>Street address:</strong>
+  <%= @contact.street_address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @contact.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @contact.state %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @contact.zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @contact.country %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @contact.phone %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @contact.notes %>
+</p>
+</div>
+
+

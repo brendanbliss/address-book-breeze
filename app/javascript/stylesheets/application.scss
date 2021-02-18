@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Newsreader:400,700');
+
+body {
+  font-family: 'Newsreader', sans-serif;
+}
+
+.img-icon {
+  height: 80px;
+  border-radius: 100%;
+  object-fit: cover;
+  width: 80px;
+}
+
+.list-group-item {
+  font-size: 1.75em;
+}
