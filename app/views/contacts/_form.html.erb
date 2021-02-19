@@ -23,7 +23,7 @@
 
   <hr class="mt-6 border" />
 
-  <h3>Personal Details</h3>
+  <h3 id="test">Personal Details</h3>
 
   <div class="form-group">
     <%= form.label "First Name*" %>
@@ -92,3 +92,21 @@
     <%= form.submit class: "btn btn-success" %>
   </div>
 <% end %>
+
+<script>
+
+  const test = document.getElementById("test");
+  test.addEventListener("click", () => {
+    fetch('https://smartystreets.com/products/single-address?street=86%20Frontage%20Road&street2=&city=Belmont&state=MA&zipcode=&address-type=us-street-components', {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+      .then(res => console.log(res))
+      //.then(data => console.log(data)); 
+  })
+
+  
+  
+
+</script>
