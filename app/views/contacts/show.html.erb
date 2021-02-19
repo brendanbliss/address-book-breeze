@@ -8,8 +8,8 @@
           <p class="card-text"><%= @contact.notes %></p>
         </div>
         <div class="card-body pt-0">
-          <a href="#" class="card-link"><%= @contact.phone %></a>
-          <a href="#" class="card-link"><%= @contact.email %></a>
+          <%= link_to @contact.phone, "tel:#{@contact.phone}", class: "card-link" %>
+          <%= link_to @contact.email, "mailto:#{@contact.email}", class: "card-link" %>
         </div>
       </div>
     </div>
@@ -19,6 +19,7 @@
         <div class="card-body">
           <h5 class="card-title font-weight-bold">Address</h5>
           <p class="card-text"><%= @contact.street_address %></p>
+          <p class="card-text"><%= @contact.street_address_2 %></p>
           <p class="card-text"><%= @contact.city %>, <%= @contact.state %> <%= @contact.zip_code %></p>
           <p class="card-text"><%= @contact.country %></p>
         </div>

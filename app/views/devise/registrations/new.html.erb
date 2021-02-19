@@ -6,19 +6,19 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= f.label :first_name, class:"sr-only" %>
-      <%= f.text_field :first_name, autofocus: true, class: "form-control mb-3", placeholder: "First Name" %>
+      <%= f.text_field :first_name, autofocus: true, class: "form-control mb-3", placeholder: "First Name*" %>
 
       <%= f.label :last_name, class:"sr-only" %>
-      <%= f.text_field :last_name, autofocus: true, class: "form-control mb-3", placeholder: "Last Name" %>
+      <%= f.text_field :last_name, autofocus: true, class: "form-control mb-3", placeholder: "Last Name*" %>
 
       <%= f.label :email, class:"sr-only" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "Email Address" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "Email Address*" %>
 
       <%= f.label :password, class:"sr-only" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Password" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Password*" %>
 
       <%= f.label :password_confirmation, class:"sr-only" %>
-      <%= f.password_field :password_confirmation, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Confirm Password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Confirm Password*" %>
 
       <%= f.submit "Sign up", class: "btn btn-lg btn-success btn-block" %>
 
