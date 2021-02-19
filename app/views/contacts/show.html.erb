@@ -5,11 +5,12 @@
         <%= image_tag contact_image(@contact), class: "card-img-top" %>
         <div class="card-body">
           <h3 class="card-title font-weight-bold"><%= @contact.full_name %></h3>
+          <h6 class="card-subtitle mb-2 text-muted">Notes</h6>
           <p class="card-text"><%= @contact.notes %></p>
         </div>
         <div class="card-body pt-0">
-          <%= link_to @contact.phone, "tel:#{@contact.phone}", class: "card-link" %>
-          <%= link_to @contact.email, "mailto:#{@contact.email}", class: "card-link" %>
+          <p class="card-text"><span class="font-weight-bold">Phone: </span><%= link_to @contact.phone, "tel:#{@contact.phone}", class: "card-link" %></p>
+          <p class="card-text"><span class="font-weight-bold">Email: </span><%= link_to @contact.email, "mailto:#{@contact.email}", class: "card-link" %></p>
         </div>
       </div>
     </div>
@@ -20,7 +21,7 @@
           <h5 class="card-title font-weight-bold">Address</h5>
           <p class="card-text"><%= @contact.street_address %></p>
           <p class="card-text"><%= @contact.street_address_2 %></p>
-          <p class="card-text"><%= @contact.city %>, <%= @contact.state %> <%= @contact.zip_code %></p>
+          <p class="card-text"><%= @contact.city + "," unless @contact.city == "" %> <%= @contact.state %> <%= @contact.zip_code %></p>
         </div>
       </div>
     </div>
