@@ -5,6 +5,7 @@
 
 import "bootstrap"
 import "../stylesheets/application"
+import "components/filter"
 
 require("@rails/ujs").start()
 require("turbolinks").start()
