@@ -17,7 +17,7 @@
       </ul>
   
       <% if user_signed_in? %>
-        <%= link_to "Welcome, " + current_user.first_name, edit_user_registration_path, class: "nav-link text-muted hover-white" %>
+        <%= link_to "Welcome, " + current_user.first_name, edit_user_registration_path, class: "nav-link bg-dark-nav-link pl-0" %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-outline-danger" %>
       <% else %>
         <%= link_to "Log In", new_user_session_path, class:"btn btn-outline-secondary mr-3" %>
