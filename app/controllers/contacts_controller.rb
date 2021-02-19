@@ -1,10 +1,11 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.all.where('user_id = ?', current_user.id)
   end
 
   # GET /contacts/1 or /contacts/1.json
