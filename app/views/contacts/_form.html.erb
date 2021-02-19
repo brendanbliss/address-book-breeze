@@ -51,36 +51,36 @@
 
   <hr class="mt-6 border" />
 
-  <h3>Address</h3>
+  <h3>Address</h3> 
+  
+  <span class="text-danger d-none mb-2" id="invalid-message"><%= image_tag "red-x.png", class: "validation-icon" %> Invalid Address</span>
+  <span class="text-success d-none mb-2" id="valid-message"><%= image_tag "green-check.png", class: "validation-icon" %> Valid Address</span>
+
+  <p class="text-success d-none mb-2" id="matched-address"></p>
 
   <div class="form-group">
     <%= form.label :street_address %>
-    <%= form.text_field :street_address, class: "form-control", placeholder: "123 N 456 S" %>
+    <%= form.text_field :street_address, class: "form-control", id: "street", placeholder: "123 N 456 S" %>
   </div>
 
    <div class="form-group">
     <%= form.label :street_address_2 %>
-    <%= form.text_field :street_address_2, class: "form-control", placeholder: "Apt A" %>
+    <%= form.text_field :street_address_2, class: "form-control", id: "street2", placeholder: "Apt A" %>
   </div>
 
   <div class="form-group">
     <%= form.label :city %>
-    <%= form.text_field :city, class: "form-control", placeholder: "Hometown City" %>
+    <%= form.text_field :city, class: "form-control", id: "city", placeholder: "Hometown City" %>
   </div>
 
   <div class="form-group">
     <%= form.label :state %>
-    <%= form.text_field :state, class: "form-control", placeholder: "Utah" %>
+    <%= form.text_field :state, class: "form-control", id: "state", placeholder: "Utah" %>
   </div>
 
   <div class="form-group">
     <%= form.label :zip_code %>
-    <%= form.text_field :zip_code, class: "form-control", placeholder: "84123" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :country %>
-    <%= form.text_field :country, class: "form-control", placeholder: "United States" %>
+    <%= form.text_field :zip_code, class: "form-control", id: "zip", placeholder: "84123" %>
   </div>
 
   <div class="form-group">
@@ -95,18 +95,71 @@
 
 <script>
 
-  const test = document.getElementById("test");
-  test.addEventListener("click", () => {
-    fetch('https://smartystreets.com/products/single-address?street=86%20Frontage%20Road&street2=&city=Belmont&state=MA&zipcode=&address-type=us-street-components', {
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-      .then(res => console.log(res))
-      //.then(data => console.log(data)); 
-  })
+  function validateAddress() {
+    const invalidMessage = document.getElementById("invalid-message"); 
+    const validMessage = document.getElementById("valid-message"); 
+    const matchedAddress = document.getElementById("matched-address"); 
+    
+    // check if they have entered a complete address
+    const street = document.getElementById("street");
+    const street2 = document.getElementById("street2");
+    const city = document.getElementById("city");
+    const state = document.getElementById("state");
+    const zip = document.getElementById("zip");
+    
+    // if they have entered a partial, put notice that the address has not been validated
+    let complete = street.value && city.value && state.value && zip.value;
+    let partial = street.value || city.value || state.value || zip.value;
 
-  
-  
+    if (partial) {
+      // set not valid
+      matchedAddress.classList.add('d-none');
+      matchedAddress.classList.remove('d-block');
+
+      validMessage.classList.add('d-none');
+      validMessage.classList.remove('d-block');
+
+      invalidMessage.classList.remove('d-none');
+      invalidMessage.classList.add('d-block');
+    } else {
+      invalidMessage.classList.add('d-none');
+      invalidMessage.classList.remove('d-block');
+    }
+
+    // if they have completed it, check if valid,
+    if(complete) {
+      const baseUrl = "https://us-street.api.smartystreets.com/street-address?";   
+      fetch(`${baseUrl}street=${encodeURIComponent(street.value)}&street2=${encodeURIComponent(street2.value)}&city=${encodeURIComponent(city.value)}&state=${encodeURIComponent(state.value)}&zipcode=${encodeURIComponent(zip.value)}&match=strict&key=74098589012008916`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          if (data.length > 0 && data[0]["analysis"]["dpv_match_code"] === "Y") {
+            invalidMessage.classList.add('d-none');
+            invalidMessage.classList.remove('d-block');
+
+            validMessage.classList.remove('d-none');
+            validMessage.classList.add('d-block');
+
+            matchedAddress.classList.remove('d-none');
+            matchedAddress.classList.add('d-block');
+            matchedAddress.innerHTML = `Matched Address: ${data[0]["delivery_line_1"]} ${data[0]["last_line"]}`;
+          }
+        })
+
+    }
+  }
+
+  function delay(callback, ms) {
+    var timer = 0;
+    return function() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        callback();
+      }, ms || 0);
+    }
+  }
+
+  document.addEventListener("keyup", delay(validateAddress, 500));
 
 </script>
