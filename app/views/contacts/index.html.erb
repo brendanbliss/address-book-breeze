@@ -19,7 +19,7 @@
         <% @contacts.each do |contact| %>
           <li class="list-group-item">
             <%= image_tag contact_image(contact), class: "img-thumbnail img-icon", width: "100" %>
-            <%= link_to "#{contact.first_name} #{contact.last_name}", contact %>
+            <%= link_to contact.full_name, contact %>
           </li>
         <% end %>
       </ul>

@@ -6,6 +6,10 @@ class Contact < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validate :image_type
 
+  def full_name
+    first_name + ' ' + last_name
+  end
+
   private
 
     def image_type
