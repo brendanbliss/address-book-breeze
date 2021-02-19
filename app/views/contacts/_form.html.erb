@@ -12,13 +12,23 @@
   <% end %>
 
   <div class="form-group">
+    <div class="control">
+      <figure class="rounded">
+        <%= image_tag contact_image(contact), class: "rounded", width: "100" %>
+      </figure>
+      <%= form.label :contact_image %>
+      <%= form.file_field :contact_image, class: "form-control-file" %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: "form-control" %>
+    <%= form.text_field :first_name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "form-control" %>
+    <%= form.text_field :last_name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">

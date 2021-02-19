@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ContactsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    sign_in users(:regular)
     @contact = contacts(:one)
   end
 
@@ -45,4 +46,11 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to contacts_url
   end
+
+  test "redirected if not logged in" do
+    sign_out :user
+    get contacts_url
+    assert_response :redirect
+  end
+
 end

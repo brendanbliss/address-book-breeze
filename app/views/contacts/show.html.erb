@@ -3,6 +3,8 @@
   <%= link_to 'Edit', edit_contact_path(@contact), class: "btn btn-secondary mb-3" %>
   <%= link_to 'Delete', @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mb-3" %>
 
+<%= image_tag contact_image(@contact), class: "img-thumbnail", width: "100" %>
+
 <p>
   <strong>First name:</strong>
   <%= @contact.first_name %>
