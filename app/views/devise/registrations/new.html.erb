@@ -15,10 +15,13 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3", placeholder: "Email Address*" %>
 
       <%= f.label :password, class:"sr-only" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Password*" %>
+      <% if @minimum_password_length %>
+        <span class="pl-1 text-xs text-grey-dark"><em>(<%= @minimum_password_length %> characters minimum)</em></span>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-3", placeholder: "Password*" %>
 
       <%= f.label :password_confirmation, class:"sr-only" %>
-      <%= f.password_field :password_confirmation, autocomplete: "current-password", class: "form-control mb-3", placeholder: "Confirm Password*" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-3", placeholder: "Confirm Password*" %>
 
       <%= f.submit "Sign up", class: "btn btn-lg btn-success btn-block" %>
 
